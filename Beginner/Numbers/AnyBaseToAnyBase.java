@@ -1,5 +1,7 @@
 package Numbers;
 
+import java.util.Scanner;
+
 public class AnyBaseToAnyBase {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
@@ -15,14 +17,36 @@ public class AnyBaseToAnyBase {
     }
 
     public static int anyBaseToAnyBase(int n, int fb, int tb) {
-        int ans = 0;
+        int decimal = anyBaseToDecimal(n, fb);
+        int result = decimalToAnyBase(decimal, tb);
+        return result;
+    }
+
+    public static int anyBaseToDecimal(int n, int base) {
+        int decimal = 0;
         int power = 1;
+
         while (n > 0) {
-            int digit = n % fb;
-            ans += digit * power;
-            power *= tb;
-            n /= fb;
+            int digit = n % 10;
+            decimal += digit * power;
+            power *= base;
+            n /= 10;
         }
-        return ans;
+
+        return decimal;
+    }
+
+    public static int decimalToAnyBase(int decimal, int base) {
+        int result = 0;
+        int power = 1;
+
+        while (decimal > 0) {
+            int remainder = decimal % base;
+            result += remainder * power;
+            power *= 10;
+            decimal /= base;
+        }
+
+        return result;
     }
 }
