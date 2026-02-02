@@ -30,30 +30,32 @@ public class SpiralDisplay {
 
         System.out.println("Spiral Order:");
         while (count < totalElements) {
-            for (int j = minCol; j <= maxCol && count < totalElements; j++) {
-                System.out.println(arr[minRow][j]);
-                count++;
-            }
-            minRow++;
-
             for (int i = minRow; i <= maxRow && count < totalElements; i++) {
-                System.out.println(arr[i][maxCol]);
+                System.out.println(arr[i][minCol]);
                 count++;
             }
-            maxCol--;
+            minCol++;
 
-            for (int j = maxCol; j >= minCol && count < totalElements; j--) {
+            for (int j = minCol; j <= maxCol && count < totalElements; j++) {
                 System.out.println(arr[maxRow][j]);
                 count++;
             }
             maxRow--;
 
             for (int i = maxRow; i >= minRow && count < totalElements; i--) {
-                System.out.println(arr[i][minCol]);
+                System.out.println(arr[i][maxCol]);
                 count++;
             }
-            minCol++;
+            maxCol--;
+
+            for (int j = maxCol; j >= minCol && count < totalElements; j--) {
+                System.out.println(arr[minRow][j]);
+                count++;
+            }
+            minRow++;
         }
         scn.close();
     }
 }
+
+
